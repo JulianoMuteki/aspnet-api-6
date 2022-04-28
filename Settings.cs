@@ -13,7 +13,9 @@ namespace MyWebAPI
             services.AddCors();
             services.AddControllers();
 
-            var authorApiKey = builder.Configuration.GetValue<string>("AuthorApiKey");
+            //var authorApiKey = builder.Configuration.GetValue<string>("AuthorApiKey");
+            var authorApiKey = builder.Configuration["SecretSettingsOptions:AuthorApiKey"];
+
             var key = Encoding.ASCII.GetBytes(authorApiKey);
             services.AddAuthentication(x =>
             {

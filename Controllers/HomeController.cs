@@ -9,6 +9,13 @@ namespace Shop.Controllers
     [Route("v1/account")]
     public class HomeController : Controller
     {
+        private readonly IConfiguration Configuration;
+        public HomeController(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
@@ -19,7 +26,10 @@ namespace Shop.Controllers
             if (user == null)
                 return NotFound(new { message = "Usuário ou senha inválidos" });
 
-            var token = TokenService.GenerateToken(user);
+            var secretSetting = new SecretSetting();
+            Configuration.GetSection(SecretSetting.SecretSettingsOptions).Bind(secretSetting);
+
+            var token = TokenService.GenerateToken(user, secretSetting);
             user.Password = "";
             return new
             {
