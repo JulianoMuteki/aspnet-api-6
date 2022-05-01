@@ -1,3 +1,5 @@
+[![.NET](https://github.com/JulianoMuteki/aspnet-api-6/actions/workflows/main.yml/badge.svg)](https://github.com/JulianoMuteki/aspnet-api-6/actions/workflows/main.yml)
+
 # aspnet-api-6
 Authentication and Authorization
 
